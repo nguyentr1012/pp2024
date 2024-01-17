@@ -64,35 +64,40 @@ def main():
     courses = []
     marks = {}
 
-    # Define the list of operations
-    operations = [
-        ("Exit", None),
-        ("Input number of students", input_num_students),
-        ("Input student information", input_student_info),
-        ("Input number of courses", input_num_courses),
-        ("Input course information", input_course_info),
-        ("Input marks for a course", input_student_marks),
-        ("List all courses", list_courses),
-        ("List all students", list_students),
-        ("Show student marks for a course", show_student_marks)
-    ]
-
     while True:
         # Display the menu
         print("Menu:")
-        for i, (operation, _) in enumerate(operations):
-            print(f"{i}. {operation}")
+        print("0. Exit")
+        print("1. Input number of students")
+        print("2. Input student information")
+        print("3. Input number of courses")
+        print("4. Input course information")
+        print("5. Input marks for a course")
+        print("6. List all courses")
+        print("7. List all students")
+        print("8. Show student marks for a course")
 
         choice = int(input("Select an operation by entering its number: "))
 
         if choice == 0:
             break
 
-        # Execute the selected operation
-        _, operation = operations[choice]
-        if operation is not None:
-            operation(students, courses, marks)
-
-# Call the main function
-if __name__ == "__main__":
-    main()
+        match choice:
+            case 1:
+                input_num_students()
+            case 2:
+                input_student_info()
+            case 3:
+                input_num_courses()
+            case 4:
+                input_course_info()
+            case 5:
+                input_student_marks(students, courses)
+            case 6:
+                list_courses(courses)
+            case 7:
+                list_students(students)
+            case 8:
+                show_student_marks(students, marks)
+            case _:
+                print("Invalid choice. Please try again.")
